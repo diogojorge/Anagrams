@@ -4,6 +4,17 @@ declare(strict_types=1);
 
 namespace App;
 
+use function array_product;
+use function array_search;
+use function count;
+use function count_chars;
+use function implode;
+use function range;
+use function shuffle;
+use function sort;
+use function str_split;
+use function strlen;
+
 class Anagrams
 {
     public string $string;
