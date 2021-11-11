@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use function array_product;
-use function array_search;
+use function in_array;
 use function count;
 use function count_chars;
 use function implode;
@@ -26,7 +26,7 @@ class Anagrams
 
     public function checkExistsRepeatedLetter(string $string): bool
     {
-        foreach (count_chars($string, 1) as $key => $value) {
+        foreach (count_chars($string, 1) as $value) {
             if ($value > 1) {
                 return true;
             }
@@ -36,7 +36,7 @@ class Anagrams
 
     public function makeSplit(string $word): array
     {
-        return str_split((string) $word);
+        return str_split($word);
     }
 
     public function calcFactorial(int $strlen): int
@@ -47,7 +47,7 @@ class Anagrams
     public function qtAnagramsWithRepeatedLetter(string $string): int
     {
         $denominator = 1;
-        foreach (count_chars($string, 1) as $key => $value) {
+        foreach (count_chars($string, 1) as $value) {
             $denominator *= $this->calcFactorial($value);
         }
 
@@ -64,10 +64,9 @@ class Anagrams
     public function makeListAnagram(string $string, int $qtAnagrams): array
     {
         $result = [];
-//        $qtAnagrams = 0;
         do {
             $anagram = $this->makeShuffleWord($string);
-            if (array_search($anagram, $result, true) === false) {
+            if (in_array($anagram, $result, true) === false) {
                 $result[] = $anagram;
             }
         } while (count($result) !== $qtAnagrams);
